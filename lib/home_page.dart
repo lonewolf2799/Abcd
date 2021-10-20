@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:untitled/user_info_page.dart';
+import 'package:untitled/weather_api.dart';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,6 +14,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.blue,
         actions: [
           ElevatedButton.icon(onPressed: (){
+            Navigator.pushNamed(context, '/user_info');
 
           }, icon: Icon(Icons.person), label: Text('User')),
 
@@ -32,7 +34,9 @@ class Home extends StatelessWidget {
 
               ),
               TextButton.icon(onPressed: (){}, icon: Icon(Icons.book_rounded), label: Text('Logs')),
-              TextButton.icon(onPressed: (){}, icon: Icon(Icons.wb_sunny), label: Text('Weather')),
+              TextButton.icon(onPressed: (){
+                Navigator.pushNamed(context, '/weather');
+              }, icon: Icon(Icons.wb_sunny), label: Text('Weather')),
 
             ],
           )
