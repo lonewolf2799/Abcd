@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:untitled/home_page.dart';
 void main() => runApp(MyApp());
 
     class MyApp extends StatelessWidget {
@@ -9,27 +9,6 @@ void main() => runApp(MyApp());
       Widget build(BuildContext context) {
         return MaterialApp(
           home: Home(),
-        );
-      }
-    }
-
-    class Home extends StatelessWidget {
-      const Home({Key? key}) : super(key: key);
-
-      @override
-      Widget build(BuildContext context) {
-        return Scaffold(
-          backgroundColor: Colors.grey[400],
-          appBar: AppBar(
-            title: Text('Agriculture-home'),
-            centerTitle: true,
-            backgroundColor: Colors.blue,
-
-          ),
-          body: Container(
-            padding: EdgeInsets.all(10.0),
-            child: Text(' Here we will be building our app now '),
-          ),
         );
       }
     }
