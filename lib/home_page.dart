@@ -12,13 +12,9 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blue,
         actions: [
-          ElevatedButton.icon(onPressed: (){
-
-          }, icon: Icon(Icons.person), label: Text('User')),
-
+          ElevatedButton.icon(
+              onPressed: () {}, icon: Icon(Icons.person), label: Text('User')),
         ],
-
-
       ),
       body: Container(
           padding: EdgeInsets.all(10.0),
@@ -26,18 +22,20 @@ class Home extends StatelessWidget {
             children: [
               //Text('Here we will be adding our widgets for main screen '),
               TextButton.icon(
-                onPressed: (){},
+                onPressed: () {},
                 icon: Icon(Icons.agriculture),
                 label: Text('Crops'),
-
               ),
-              TextButton.icon(onPressed: (){}, icon: Icon(Icons.book_rounded), label: Text('Logs')),
-              TextButton.icon(onPressed: (){}, icon: Icon(Icons.wb_sunny), label: Text('Weather')),
-
+              TextButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.book_rounded),
+                  label: Text('Logs')),
+              TextButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.wb_sunny),
+                  label: Text('Weather')),
             ],
-          )
-      ),
+          )),
     );
   }
 }
-
