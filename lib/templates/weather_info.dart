@@ -10,6 +10,13 @@ import 'package:flutter/material.dart';
     print("$name => S: ${v.isStatic}, P: ${v.isPrivate}, F: ${v.isFinal}");
   }
 */
+const fractionDigits = 2;
+
+String toGoodTempString(double? temp) {
+  if (temp == null) return "";
+  temp -= 273;
+  return temp.toStringAsFixed(fractionDigits);
+}
 
 class WeatherInfo {
   String? locName;
@@ -48,5 +55,10 @@ class WeatherInfo {
     this.humidity = json['main']['humidity'];
     this.windSpeed = json['wind']['speed'];
     this.windDeg = json['wind']['deg'];
+  }
+//   return 'Student: {name: ${name}, age: ${age}}';
+  @override
+  String toString() {
+    return 'WeatherInfo : {temp : ${toGoodTempString(this.temperature)} , sunrise: ${this.sunRise} , sunset: ${this.sunSet} , hum: ${this.humidity} , w_sp: ${this.windSpeed} , w_deg : ${this.windDeg} }';
   }
 }

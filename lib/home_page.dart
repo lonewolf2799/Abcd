@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'templates/weather_info.dart';
 import 'constants.dart';
 
-void getWeather(String city, Widget wg) async {
+Future<WeatherInfo> getWeather(String city) async {
   // THis is the api call
   // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
@@ -14,12 +14,25 @@ void getWeather(String city, Widget wg) async {
 
   final response = await get(uri);
 
-  WeatherInfo info = new WeatherInfo(jsonDecode(response.body));
-  print(info.toString());
+  WeatherInfo info = WeatherInfo(jsonDecode(response.body));
+  return info;
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  WeatherInfo? wInfo;
+
+  void handleWeatherTap() {
+    setState(() {
+      getWeather("Mumbai").then((value) => wInfo = value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,22 +51,24 @@ class Home extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           child: Column(
             children: [
-              //Text('Here we will be adding our widgets for main screen '),
-              TextButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.agriculture),
-                label: Text('Crops'),
-              ),
-              TextButton.icon(
+              Row(children: [
+                TextButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.book_rounded),
-                  label: Text('Logs')),
-              TextButton.icon(
+                  icon: Icon(Icons.agriculture),
+                  label: Text('Crops'),
+                ),
+                TextButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.book_rounded),
+                    label: Text('Logs')),
+                TextButton.icon(
                   onPressed: () {
-                    getWeather("Mumbai", this);
+                    handleWeatherTap();
                   },
                   icon: Icon(Icons.wb_sunny),
-                  label: Text('Weather')),
+                  label: Text('Weather'),
+                ),
+              ]),
             ],
           )),
     );
