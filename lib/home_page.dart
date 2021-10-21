@@ -18,8 +18,7 @@ void getWeather(String city, Widget wg) async {
   final response = await get(uri);
 
   WeatherInfo info = new WeatherInfo(jsonDecode(response.body));
-  print(info.pressure);
-  print(wg.toString());
+  print(info.toString());
 }
 
 class Home extends StatelessWidget {
