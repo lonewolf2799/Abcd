@@ -37,6 +37,18 @@ class _WeatherState extends State<Weather> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('Weather')),
+      body: Column(
+        children: [
+          TextButton.icon(
+            onPressed: handleWeatherTap,
+            icon: Icon(Icons.wb_sunny),
+            label: Text('getWeather'),
+          ),
+          Text(wInfo != null ? wInfo.toString() : "")
+        ],
+      ),
+    );
   }
 }

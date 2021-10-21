@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'templates/weather_info.dart';
+import './weather_info.dart';
 import 'constants.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
@@ -26,14 +27,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  WeatherInfo? wInfo;
-
-  void handleWeatherTap() {
-    setState(() {
-      getWeather("Mumbai").then((value) => wInfo = value);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +56,10 @@ class _HomeState extends State<Home> {
                     label: Text('Logs')),
                 TextButton.icon(
                   onPressed: () {
-                    handleWeatherTap();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Weather();
+                    }));
                   },
                   icon: Icon(Icons.wb_sunny),
                   label: Text('Weather'),

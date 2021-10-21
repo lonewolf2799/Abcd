@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*
-  Test t = new Test();
-  InstanceMirror instance_mirror = reflect(t);
-  var class_mirror = instance_mirror.type;
-  for(var v in class_mirror.variables.values)
-  {
-    var name = MirrorSystem.getName(v.simpleName);
-    print("$name => S: ${v.isStatic}, P: ${v.isPrivate}, F: ${v.isFinal}");
-  }
-*/
 const fractionDigits = 2;
 
 String toGoodTempString(double? temp) {
