@@ -3,17 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'templates/weather_info.dart';
+import 'constants.dart';
 
 void getWeather(String city, Widget wg) async {
   // THis is the api call
   // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
-  final queryParameters = {
-    'q': city,
-    'appid': '5cd9f6c1f2e8ba4b09280370e8cd3d4d'
-  };
-  final uri =
-      Uri.https('api.openweathermap.org', '/data/2.5/weather', queryParameters);
+  final queryParameters = {'q': city, 'appid': api_key};
+  final uri = Uri.https(w_link, '/data/2.5/weather', queryParameters);
 
   final response = await get(uri);
 
