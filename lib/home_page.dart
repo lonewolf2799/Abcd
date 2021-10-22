@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'templates/weather_info.dart';
+import 'models/weather_info.dart';
 import './weather_info.dart';
 import 'constants.dart';
 
