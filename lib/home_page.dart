@@ -6,6 +6,8 @@ import 'package:http/http.dart';
 import 'templates/weather_info.dart';
 import './weather_info.dart';
 import 'constants.dart';
+import 'package:untitled/user_info_page.dart';
+//import 'package:untitled/weather_api.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
   // THis is the api call
@@ -20,11 +22,12 @@ Future<WeatherInfo> getWeather(String city) async {
   return info;
 }
 
+
+
+
 class Home extends StatefulWidget {
 
-import 'package:untitled/user_info_page.dart';
-import 'package:untitled/weather_api.dart';
-class Home extends StatelessWidget {
+
 
   const Home({Key? key}) : super(key: key);
 

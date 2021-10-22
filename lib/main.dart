@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/home_page.dart';
 import 'package:untitled/user_info_page.dart';
-import 'package:untitled/weather_api.dart';
+import 'package:untitled/weather_info.dart';
 void main() => runApp(MyApp());
 
     class MyApp extends StatelessWidget {
@@ -10,7 +10,7 @@ void main() => runApp(MyApp());
       @override
       Widget build(BuildContext context) {
         return MaterialApp(
-          initialRoute: '/weather',
+          initialRoute: '/',
           routes: {
             '/': (context) => Home(),
             '/user_info': (context) => UserInfo(),
