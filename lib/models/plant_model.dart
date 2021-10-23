@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:untitled/models/palnt_status.dart';
+import './plant_status.dart';
 
 const int factsLen = 10;
 

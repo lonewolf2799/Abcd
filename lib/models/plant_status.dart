@@ -1,6 +1,6 @@
 class PlantStatus {
   int? moisture;
-  int? water;
+  int? humidity;
   DateTime? lastWatered;
   DateTime? installed;
   double? currTemp;

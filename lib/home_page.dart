@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'models/weather_info.dart';
 import './weather_info.dart';
-import 'constants.dart';
+import './constants.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
   // THis is the api call
