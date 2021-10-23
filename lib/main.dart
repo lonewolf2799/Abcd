@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/home_page.dart';
-import 'package:untitled/templates/user_info_page.dart';
-import 'package:untitled/templates/weather_info.dart';
-import 'package:untitled/templates/crops.dart';
+import 'package:agriman/home_page.dart';
+import 'package:agriman/templates/user_info_page.dart';
+import 'package:agriman/templates/weather_info.dart';
+import 'package:agriman/templates/crops.dart';
 void main() => runApp(MyApp());
 
     class MyApp extends StatelessWidget {

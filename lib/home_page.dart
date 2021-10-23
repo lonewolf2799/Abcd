@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart';
-import 'package:untitled/templates/crops.dart';
+import 'package:agriman/templates/crops.dart';
 import 'models/weather_info.dart';
 import 'templates/weather_info.dart';
 import 'constants.dart';
-import 'package:untitled/templates/user_info_page.dart';
+import 'package:agriman/templates/user_info_page.dart';
 //import 'package:untitled/weather_api.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
