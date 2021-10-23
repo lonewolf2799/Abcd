@@ -1,54 +1,54 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+//import 'package:weather/weather.dart';
+import 'package:http/http.dart';
+import '../models/weather_info.dart';
+import '../constants.dart';
 
-const fractionDigits = 2;
+Future<WeatherInfo> getWeather(String city) async {
+  // THis is the api call
+  // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
-String toGoodTempString(double? temp) {
-  if (temp == null) return "";
-  temp -= 273;
-  return temp.toStringAsFixed(fractionDigits);
+  final queryParameters = {'q': city, 'appid': api_key};
+  final uri = Uri.https(w_link, '/data/2.5/weather', queryParameters);
+
+  final response = await get(uri);
+
+  WeatherInfo info = WeatherInfo(jsonDecode(response.body));
+  return info;
 }
 
-class WeatherInfo {
-  String? locName;
-  String? description;
+class Weather extends StatefulWidget {
+  const Weather({Key? key}) : super(key: key);
 
-  int? humidity;
-  int? pressure;
-  int? visibility;
-  int? windDeg;
-
-  double? temperature;
-  double? feelsLike;
-  double? windSpeed;
-  double? tempMax;
-  double? tempMin;
-
-  TimeOfDay? sunRise;
-  TimeOfDay? sunSet;
-
-  WeatherInfo(Map<String, dynamic> json) {
-    final int sr = json['sys']['sunrise'] as int;
-    final int ss = json['sys']['sunset'] as int;
-    final DateTime srise = DateTime.fromMillisecondsSinceEpoch(sr * 1000);
-    final DateTime sset = DateTime.fromMillisecondsSinceEpoch(ss * 1000);
-
-    this.locName = json['name'];
-    this.sunRise = TimeOfDay.fromDateTime(srise);
-    this.sunSet = TimeOfDay.fromDateTime(sset);
-    this.description = json['weather'][0]['description'];
-    this.feelsLike = json['main']['feels_like'];
-    this.visibility = json['visibility'];
-    this.pressure = json['main']['pressure'];
-    this.tempMax = json['main']['temp_max'];
-    this.tempMin = json['main']['temp_min'];
-    this.temperature = json['main']['temp'];
-    this.humidity = json['main']['humidity'];
-    this.windSpeed = json['wind']['speed'];
-    this.windDeg = json['wind']['deg'];
-  }
-//   return 'Student: {name: ${name}, age: ${age}}';
   @override
-  String toString() {
-    return 'WeatherInfo : {temp : ${toGoodTempString(this.temperature)} , sunrise: ${this.sunRise} , sunset: ${this.sunSet} , hum: ${this.humidity} , w_sp: ${this.windSpeed} , w_deg : ${this.windDeg} }';
+  _WeatherState createState() => _WeatherState();
+}
+
+class _WeatherState extends State<Weather> {
+  WeatherInfo? wInfo;
+
+  void handleWeatherTap() {
+    setState(() {
+      getWeather("Mumbai").then((value) => wInfo = value);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Weather')),
+      body: Column(
+        children: [
+          TextButton.icon(
+            onPressed: handleWeatherTap,
+            icon: Icon(Icons.wb_sunny),
+            label: Text('getWeather'),
+          ),
+          Text(wInfo != null ? wInfo.toString() : "")
+        ],
+      ),
+    );
   }
 }

@@ -14,7 +14,7 @@ class UserInfo extends StatelessWidget {
 
           children: [
             Text(
-              'User Account',
+              'GreenHouse ID',
               style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 2.0,
@@ -79,7 +79,20 @@ class UserInfo extends StatelessWidget {
                 ],
               ),
             ),
+            //SizedBox(height: 20.0,),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+              child: Row(
+                children: [
+                  Icon(Icons.crop_landscape,
+                  size: 20.0, color: Colors.amber,),
+                  SizedBox(width: 10,),
+                  Text('RandomLocation', style: TextStyle(fontSize: 20.0, color: Colors.yellowAccent,))
+                ],
+              ),
+            ),
             SizedBox(height: 200.0,),
+
             Center(
                 child:
                 Container(

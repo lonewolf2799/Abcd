@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart';
+import 'package:untitled/templates/crops.dart';
+import 'models/weather_info.dart';
 import 'templates/weather_info.dart';
-import './weather_info.dart';
 import 'constants.dart';
-import 'package:untitled/user_info_page.dart';
+import 'package:untitled/templates/user_info_page.dart';
 //import 'package:untitled/weather_api.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
@@ -62,7 +63,11 @@ class _HomeState extends State<Home> {
 
               Row(children: [
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return CropList();
+                    }));
+                  },
                   icon: Icon(Icons.agriculture),
                   label: Text('Crops'),
                 ),
@@ -87,6 +92,17 @@ class _HomeState extends State<Home> {
 
             ],
           )),
+    );
+  }
+}
+
+class Abcd extends StatelessWidget {
+  const Abcd({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
     );
   }
 }
