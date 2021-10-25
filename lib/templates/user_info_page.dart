@@ -99,7 +99,9 @@ class UserInfo extends StatelessWidget {
                   color: Colors.red,
                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
 
-                  child: TextButton(onPressed: (){}, child: Text('Sign Out',
+                  child: TextButton(onPressed: (){
+                    Navigator.pushReplacementNamed(context, '/login');
+                  }, child: Text('Sign Out',
               style: TextStyle(fontSize: 20.0, letterSpacing: 2.0, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             ),
