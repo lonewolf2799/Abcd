@@ -8,10 +8,11 @@ class PlantData extends StatefulWidget {
 
 class _PlantDataState extends State<PlantData> {
   late PlantModel data;
-
+  Map<String, PlantModel> m = {};
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as PlantModel;
+    m = ModalRoute.of(context)!.settings.arguments as Map<String, PlantModel>;
+    data = m['data'] as PlantModel;
     return Scaffold(
         appBar: AppBar(),
         body: Center(

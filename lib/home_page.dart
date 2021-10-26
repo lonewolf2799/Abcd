@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:agriman/templates/crops.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'models/weather_info.dart';
@@ -46,7 +47,12 @@ class _HomeState extends State<Home> {
             children: [
               Row(children: [
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return CropList();
+                    }));
+                  },
                   icon: Icon(Icons.agriculture),
                   label: Text('Crops'),
                 ),
