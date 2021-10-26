@@ -144,10 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 5,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 65,
-                          ),
+
                           Text('Not registered ?'),
                           TextButton(
                               onPressed: () {},
