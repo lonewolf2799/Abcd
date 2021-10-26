@@ -14,7 +14,7 @@ void main() => runApp(MyApp());
       @override
       Widget build(BuildContext context) {
         return MaterialApp(
-          initialRoute: '/register',
+          initialRoute: '/login',
           routes: {
             '/': (context) => Home(),
             '/user_info': (context) => UserInfo(),

@@ -29,7 +29,7 @@ final _password = TextEditingController();
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.purple, Colors.blueAccent,Colors.blueGrey],
-            stops: [0.2,0.5,0.7],
+            stops: [0.4,0.6,0.9],
             begin: Alignment.topCenter,
               end: Alignment.bottomCenter
 
@@ -85,7 +85,8 @@ final _password = TextEditingController();
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Password',
-                          hintText: 'Password', hintStyle: TextStyle( color: Colors.grey[600], )
+                          hintText: 'Password', hintStyle: TextStyle( color: Colors.grey[600], ),
+
 
                         ),
                         keyboardType: TextInputType.visiblePassword,
@@ -124,12 +125,15 @@ final _password = TextEditingController();
                     ),
                   ),
                       SizedBox(height: 5,),
-                      Row(
-                        children: [
-                          SizedBox(width: 65,),
-                          Text('Not registered ?'),
-                          TextButton(onPressed: (){},child: Text('Sign up', style: TextStyle(fontSize: 20),)),
-                        ],
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+
+                            Text('Not registered ?'),
+                            TextButton(onPressed: (){},child: Text('Sign up', style: TextStyle(fontSize: 20),)),
+                          ],
+                        ),
                       )
 
                     ],
