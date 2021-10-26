@@ -31,6 +31,7 @@ dependencies:
 
   http: ^0.13.4
   mongo_dart: ^0.7.2
+  crypto: any
 
 
 
