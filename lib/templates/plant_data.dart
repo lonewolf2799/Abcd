@@ -6,6 +6,34 @@ class PlantData extends StatefulWidget {
   State<PlantData> createState() => _PlantDataState();
 }
 
+Widget buildCard(PlantModel model) => Card(
+    shadowColor: Colors.red,
+    clipBehavior: Clip.antiAlias,
+    elevation: 8,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+    child: Container(
+      decoration: BoxDecoration(),
+      padding: EdgeInsets.all(16),
+      height: 200,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            model.name,
+            style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            model.id,
+            style: TextStyle(fontSize: 11, color: Colors.grey),
+          ),
+          Container(
+            padding: EdgeInsets.all(11),
+            child: Text(model.realTimeStatus.humidity.toString()),
+          )
+        ],
+      ),
+    ));
+
 class _PlantDataState extends State<PlantData> {
   late PlantModel data;
   Map<String, PlantModel> m = {};
@@ -13,15 +41,6 @@ class _PlantDataState extends State<PlantData> {
   Widget build(BuildContext context) {
     m = ModalRoute.of(context)!.settings.arguments as Map<String, PlantModel>;
     data = m['data'] as PlantModel;
-    return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: Column(children: [
-            Text('${data.name}'),
-            Text('${data.id}'),
-            Text('${data.realTimeStatus.humidity}'),
-            Text('${data.realTimeStatus.currTemp}'),
-          ]),
-        ));
+    return Scaffold(appBar: AppBar(), body: buildCard(data));
   }
 }
