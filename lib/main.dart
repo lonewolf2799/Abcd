@@ -4,8 +4,10 @@ import 'package:agriman/home_page.dart';
 import 'package:agriman/templates/user_info_page.dart';
 import 'package:agriman/templates/weather_info.dart';
 import 'package:agriman/templates/crops.dart';
-import 'package:agriman/login.dart';
-import 'package:agriman/registration.dart';
+import 'package:agriman/login_register/login.dart';
+import 'package:agriman/login_register/registration.dart';
+
+import 'login_register/personal.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/register',
       routes: {
         '/': (context) => Home(),
         '/user_info': (context) => UserInfo(),
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/crop_data': (context) => PlantData(),
         '/login': (context) => LoginPage(),
         '/register': (context) => Registration(),
+        '/profile': (context) => Userprofile()
       },
     );
   }
