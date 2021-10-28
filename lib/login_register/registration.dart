@@ -23,15 +23,16 @@ class _RegistrationState extends State<Registration> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text('Sign up'),
         centerTitle: true,
       ),
       body: Container(
         margin: EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+        //  crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             Text(' Email address:', style: TextStyle(fontSize: 15, color: Colors.blueAccent),),
             SizedBox(height: 7),

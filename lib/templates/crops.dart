@@ -54,9 +54,11 @@ class _CropListState extends State<CropList>
         ),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: crops.map((crop) => CropCard(data: crop)).toList()),
+      body: SingleChildScrollView(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: crops.map((crop) => CropCard(data: crop)).toList()),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(

@@ -154,7 +154,9 @@ class _LoginPageState extends State<LoginPage> {
 
                                   Text('Not registered ?'),
                                   TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/register');
+                                      },
                                       child: Text(
                                         'Sign up',
                                         style: TextStyle(fontSize: 20),
