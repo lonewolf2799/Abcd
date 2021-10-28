@@ -1,3 +1,0 @@
-PORT=8080
-API_KEY=lkjsk453lkslfkl5
-API_USER=jermaineo
