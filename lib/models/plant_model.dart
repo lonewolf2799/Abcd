@@ -23,9 +23,10 @@ class PlantModel {
     this.realTimeStatus.currTemp = temperature;
   }
 
-  PlantModel(String id, String name) {
+  PlantModel(String id, String name, bool imageGiven) {
     this.id = id;
     this.name = name;
+    this.imageStr = imageGiven ? 'assets/vegetables/${name.toLowerCase()}.jpg' : 'assets/vegetables/fallback.jpg';
     this.facts = [];
   }
 

@@ -1,4 +1,5 @@
 import 'package:agriman/models/plant_model.dart';
+import 'package:agriman/templates/plant_data.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
@@ -15,7 +16,7 @@ class _CropListState extends State<CropList>
   late AnimationController _controller;
   var str;
   final cropname = TextEditingController();
-  List<String> cropNames = ['Onion', 'Tomato', 'Radish', 'Pumpkins'];
+  List<String> cropNames = ['Onion', 'EggPlant'];
 
   List<PlantModel> crops = [];
 
@@ -25,7 +26,7 @@ class _CropListState extends State<CropList>
     _controller = AnimationController(vsync: this);
 
     for (String s in cropNames) {
-      cropAdder(s);
+      cropAdder(s, true);
     }
   }
 
@@ -35,10 +36,41 @@ class _CropListState extends State<CropList>
     super.dispose();
   }
 
-  void cropAdder(String s) {
+  void cropAdder(String s, bool imageGiven) {
     var bytes = utf8.encode(s);
     Digest md5res = md5.convert(bytes);
-    crops.add(new PlantModel(md5res.toString(), s));
+    crops.add(new PlantModel(md5res.toString(), s, imageGiven));
+  }
+
+  Widget PlantCell(
+    BuildContext context,
+    int index,
+  ) {
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PlantData(crops[index])));
+        },
+        child: Card(
+          margin: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Hero(
+                  tag: crops[index],
+                  child: Image.asset(crops[index].imageStr,
+                      width: 150, height: 150)),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(crops[index].name,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const Icon(Icons.navigate_next, color: Colors.black38),
+            ],
+          ),
+        ));
   }
 
   late PlantModel model;
@@ -54,9 +86,15 @@ class _CropListState extends State<CropList>
         ),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: crops.map((crop) => CropCard(data: crop)).toList()),
+      body: Center(
+        child: Stack(
+          children: [
+            ListView.builder(
+                itemCount: crops.length,
+                itemBuilder: (context, index) => PlantCell(context, index))
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(
@@ -78,7 +116,7 @@ class _CropListState extends State<CropList>
                         } else {
                           str = cropname.text;
                           setState(() {
-                            cropAdder(str);
+                            cropAdder(str, false);
                           });
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('$str Added'),

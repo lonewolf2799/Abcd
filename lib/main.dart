@@ -1,4 +1,3 @@
-import 'package:agriman/templates/plant_data.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
 import 'package:agriman/templates/user_info_page.dart';
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
         '/user_info': (context) => UserInfo(),
         '/weather': (context) => Weather(),
         '/crops': (context) => CropList(),
-        '/crop_data': (context) => PlantData(),
         '/login': (context) => LoginPage(),
         '/register': (context) => Registration(),
       },
