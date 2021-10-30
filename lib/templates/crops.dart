@@ -86,6 +86,7 @@ class _CropListState extends State<CropList>
         ),
         backgroundColor: Colors.lightGreen,
       ),
+
       body: Center(
         child: Stack(
           children: [
@@ -94,7 +95,9 @@ class _CropListState extends State<CropList>
                 itemBuilder: (context, index) => PlantCell(context, index))
           ],
         ),
+
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(

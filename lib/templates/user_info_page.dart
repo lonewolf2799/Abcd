@@ -116,8 +116,26 @@ class UserInfo extends StatelessWidget {
               SizedBox(
                 height: 200.0,
               ),
+          Center(
+            child: ElevatedButton
+              (
+              onPressed: (){
+              Navigator.pushReplacementNamed(context, '/login');
+            }, child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                'Sign Out',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            ),
+          ),
 
-              Center(
+              /*Center(
                   child: Container(
                 color: Colors.red,
                 padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
@@ -134,7 +152,7 @@ class UserInfo extends StatelessWidget {
                         color: Colors.white),
                   ),
                 ),
-              ))
+              ))*/
             ],
           ),
         ));
