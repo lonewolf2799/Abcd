@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import '../models/weather_info.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 
 Future<WeatherInfo> getWeather(String city) async {
   final queryParameters = {'q': city, 'appid': api_key};
   final uri = Uri.https(w_link, '/data/2.5/weather', queryParameters);
+  late WeatherInfo info;
+  await get(uri).then((value) => info = WeatherInfo(jsonDecode(value.body)));
 
-  final response = await get(uri);
-
-  WeatherInfo info = WeatherInfo(jsonDecode(response.body));
   return info;
 }
 
@@ -25,11 +24,20 @@ class Weather extends StatefulWidget {
 
 class _WeatherState extends State<Weather> {
   WeatherInfo? wInfo;
+  String s = "";
 
   void handleWeatherTap() {
-    setState(() {
-      getWeather("Mumbai").then((value) => wInfo = value);
+    getWeather("Mumbai").then((value) => wInfo = value).then((v) {
+      setState(() {
+        s = wInfo.toString();
+      });
     });
+  }
+
+  @override
+  void initState() {
+    handleWeatherTap();
+    super.initState();
   }
 
   @override
@@ -43,7 +51,7 @@ class _WeatherState extends State<Weather> {
             icon: Icon(Icons.wb_sunny),
             label: Text('getWeather'),
           ),
-          Text(wInfo != null ? wInfo.toString() : "")
+          Text(s)
         ],
       ),
     );
