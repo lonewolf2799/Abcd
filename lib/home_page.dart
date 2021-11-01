@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.amber[200],
+        elevation: 0.0,
+        backgroundColor: Colors.green[700],
         title: Text('Main Menu'),
         centerTitle: true,
         actions: [
@@ -45,26 +47,28 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Option_cards(
-            route: "crops",
-            title: 'Crops',
-            link:
-                "https://images.pexels.com/photos/185402/vegetables-fresh-tomatoes-fresh-vegetables-185402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          ),
-          Option_cards(
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Option_cards(
+              route: "crops",
+              title: 'Crops',
               link:
-                  "https://images.pexels.com/photos/5245865/pexels-photo-5245865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-              title: "Weather",
-              route: "weather"),
-          Option_cards(
-              link:
-                  "https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-              title: 'Greenhouse account',
-              route: "user_info"),
-          // Option_cards(link: link, title: title, route: route)
-        ],
+                  "assets/background_images/pexels-photo-533342.jpeg",
+            ),
+            Option_cards(
+                link:
+                    "assets/background_images/weather.jpeg",
+                title: "Weather",
+                route: "weather"),
+            Option_cards(
+                link:
+                    "assets/background_images/greenhouse.jpeg",
+                title: 'Greenhouse account',
+                route: "user_info"),
+            // Option_cards(link: link, title: title, route: route)
+          ],
+        ),
       ),
     );
   }
@@ -80,14 +84,12 @@ class Option_cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.fromLTRB(35.0, 8.0, 35.0, 8.0),
+        //margin: EdgeInsets.fromLTRB(35.0, 8.0, 35.0, 8.0),
         clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
+        //shape: Rectangle(height: 24, width: 32),
         child: Stack(alignment: Alignment.bottomLeft, children: [
           Ink.image(
-            image: NetworkImage(link),
+            image: AssetImage(link),
             fit: BoxFit.cover,
             height: 200,
             child: InkWell(
