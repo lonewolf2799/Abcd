@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
 
+// ignore: must_be_immutable
 class UserInfo extends StatelessWidget {
   const UserInfo({Key? key}) : super(key: key);
 
@@ -116,24 +117,24 @@ class UserInfo extends StatelessWidget {
               SizedBox(
                 height: 200.0,
               ),
-          Center(
-            child: ElevatedButton
-              (
-              onPressed: (){
-              Navigator.pushReplacementNamed(context, '/login');
-            }, child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                'Sign Out',
-                style: TextStyle(
-                    fontSize: 20.0,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/login');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      'Sign Out',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            ),
-          ),
 
               /*Center(
                   child: Container(
