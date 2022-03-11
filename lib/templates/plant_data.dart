@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:agriman/models/plant_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import '../utils/constants.dart';
 
 // ignore: must_be_immutable
 class PlantData extends StatefulWidget {
@@ -30,6 +33,8 @@ class _PlantDataState extends State<PlantData> {
   void initState() {
     super.initState();
     readData();
+    attachStatus('Fan');
+    attachStatus('Motor');
     Timer timer = Timer.periodic(const Duration(seconds: 60), (timer) {
       readData();
       //mytimer.cancel() //to terminate this timer
@@ -62,6 +67,33 @@ class _PlantDataState extends State<PlantData> {
     } catch (error) {
       rethrow;
     }
+  }
+
+  Future<void> attachStatus(String device) async {
+    var url =
+        "https://temhupr-default-rtdb.firebaseio.com/" + device + "/value.json";
+    print(url);
+    final response = await http.get(Uri.parse(url));
+    setState(() {
+      if (device == "Fan")
+        fanMotorStatus = response.body == "true" ? true : false;
+      else
+        waterPumpStatus = response.body == "true" ? true : false;
+    });
+  }
+
+  Future<void> toggleStatus(String device) async {
+    var url = globalServerLink + device;
+    var status = device == "Fan" ? fanMotorStatus : waterPumpStatus;
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, bool>{'value': status}),
+    );
+    print(response.body);
   }
 
   @override
@@ -129,6 +161,8 @@ class _PlantDataState extends State<PlantData> {
                       onToggle: (val) {
                         setState(() {
                           fanMotorStatus = val;
+                          print(fanMotorStatus);
+                          toggleStatus('Fan');
                         });
                       },
                     ),
@@ -185,6 +219,7 @@ class _PlantDataState extends State<PlantData> {
                       onToggle: (val) {
                         setState(() {
                           waterPumpStatus = val;
+                          toggleStatus('Motor');
                         });
                       },
                     ),
