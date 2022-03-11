@@ -37,7 +37,8 @@ class _CropListState extends State<CropList>
   }
 
   void cropAdder(String s, bool imageGiven) {
-    var bytes = utf8.encode(s);
+    String r = s + DateTime.now().toString();
+    var bytes = utf8.encode(r);
     Digest md5res = md5.convert(bytes);
     crops.add(new PlantModel(md5res.toString(), s, imageGiven));
   }
@@ -86,7 +87,6 @@ class _CropListState extends State<CropList>
         ),
         backgroundColor: Colors.lightGreen,
       ),
-
       body: Center(
         child: Stack(
           children: [
@@ -95,9 +95,7 @@ class _CropListState extends State<CropList>
                 itemBuilder: (context, index) => PlantCell(context, index))
           ],
         ),
-
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(
