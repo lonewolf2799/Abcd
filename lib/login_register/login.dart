@@ -125,7 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                                   width: 200,
                                   child: Card(
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(13)),
+                                          borderRadius:
+                                              BorderRadius.circular(13)),
                                       color: Colors.blue,
                                       child: TextButton(
                                         onPressed: () {
@@ -133,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                                           password = _password.text;
                                           // Now we will pass these values for authentication to an authentication page from where it will open the page for home
                                           // but for now let us navigate to home page
-                                          Navigator.pushReplacementNamed(context, '/');
+                                          Navigator.pushReplacementNamed(
+                                              context, '/');
                                         },
                                         child: Text(
                                           'Sign in',
@@ -151,11 +153,11 @@ class _LoginPageState extends State<LoginPage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   Text('Not registered ?'),
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(context, '/register');
+                                        Navigator.pushNamed(
+                                            context, '/register');
                                       },
                                       child: Text(
                                         'Sign up',
@@ -178,7 +180,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-
-// TODO: Need to make an authorization function here
