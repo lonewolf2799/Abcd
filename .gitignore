@@ -10,7 +10,7 @@
 .svn/
 #only i will be using this next text file to create some local tasks that i need to do in this project, it is not to be shared
 tasks_mohit.txt    
-./lib/constants.dart        
+    
 # IntelliJ related
 *.iml
 *.ipr
@@ -35,7 +35,7 @@ tasks_mohit.txt
 
 # Web related
 lib/generated_plugin_registrant.dart
-
+lib/utils/constants.dart  
 # Symbolication related
 app.*.symbols
 
