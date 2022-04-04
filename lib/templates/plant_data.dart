@@ -24,8 +24,8 @@ class _PlantDataState extends State<PlantData> {
   _PlantDataState(PlantModel model) {
     this.model = model;
   }
-  String temp = "10";
-  String hum = "10";
+  String temp = "0";
+  String hum = "0";
   String moisture = "10";
   bool fanMotorStatus = false;
   bool waterPumpStatus = false;
@@ -33,16 +33,32 @@ class _PlantDataState extends State<PlantData> {
   @override
   void initState() {
     super.initState();
-    readData();
+    readDataFromFirebase();
     attachStatus('Fan');
     attachStatus('Motor');
-    Timer timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      readData();
-      //mytimer.cancel() //to terminate this timer
+    Timer _ = Timer.periodic(const Duration(seconds: 5), (timer) {
+      readDataFromFirebase();
     });
   }
 
-  Future<void> readData() async {
+  Future<void> updateVarsFromFirebase(String url, int which) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      setState(() {
+        String respBody = response.body;
+        which == 0
+            ? temp = respBody
+            : (which == 1 ? hum = respBody : moisture = respBody);
+        if (double.parse(respBody) < 0)
+          which == 0 ? temp = "0" : (which == 1 ? hum = "0" : moisture = "0");
+      });
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<void> readDataFromFirebase() async {
     // Please replace the Database URL
     // which we will get in “Add Realtime Database”
     // step with DatabaseURL
@@ -52,31 +68,9 @@ class _PlantDataState extends State<PlantData> {
     var humUrl = url + "humidity.json";
     var mosUrl = url + "moisture.json";
 
-    try {
-      final response = await http.get(Uri.parse(tempUrl));
-
-      setState(() {
-        temp = response.body;
-      });
-    } catch (error) {
-      rethrow;
-    }
-    try {
-      final response = await http.get(Uri.parse(humUrl));
-      setState(() {
-        hum = response.body;
-      });
-    } catch (error) {
-      rethrow;
-    }
-    try {
-      final response = await http.get(Uri.parse(mosUrl));
-      setState(() {
-        moisture = response.body;
-      });
-    } catch (error) {
-      rethrow;
-    }
+    updateVarsFromFirebase(tempUrl, 0);
+    updateVarsFromFirebase(humUrl, 1);
+    updateVarsFromFirebase(mosUrl, 2);
   }
 
   Future<void> attachStatus(String device) async {
@@ -95,14 +89,13 @@ class _PlantDataState extends State<PlantData> {
     var url = globalServerLink + device;
     var status = device == "Fan" ? fanMotorStatus : waterPumpStatus;
 
-    final response = await http.post(
+    final _ = await http.post(
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, bool>{'value': !status}),
     );
-    print(response.body);
   }
 
   @override
@@ -289,4 +282,12 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+List<List<String>> clr = [
+  ['#0277bd', '#4FC3F7']
+];
+
+Color getColorBasedOnList(int l_idx, int c_idx) {
+  return HexColor(clr[l_idx][c_idx]);
 }
