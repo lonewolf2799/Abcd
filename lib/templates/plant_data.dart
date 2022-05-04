@@ -63,7 +63,7 @@ class _PlantDataState extends State<PlantData> {
     // which we will get in “Add Realtime Database”
     // step with DatabaseURL
 
-    var url = "https://temhupr-default-rtdb.firebaseio.com/";
+    var url = "https://final-project-6a70d-default-rtdb.firebaseio.com/";
     var tempUrl = url + "temp.json";
     var humUrl = url + "humidity.json";
     var mosUrl = url + "moisture.json";
