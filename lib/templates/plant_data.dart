@@ -74,8 +74,9 @@ class _PlantDataState extends State<PlantData> {
   }
 
   Future<void> attachStatus(String device) async {
-    var url =
-        "https://temhupr-default-rtdb.firebaseio.com/" + device + "/value.json";
+    var url = "https://final-project-6a70d-default-rtdb.firebaseio.com/" +
+        device +
+        "/value.json";
     final response = await http.get(Uri.parse(url));
     setState(() {
       if (device == "Fan")
@@ -141,7 +142,7 @@ class _PlantDataState extends State<PlantData> {
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                                 modifier: (double value) {
-                                  return '${temp} ˚C';
+                                  return '${double.parse(temp).toStringAsFixed(2)} ˚C';
                                 }),
                             startAngle: 90,
                             angleRange: 360,
@@ -152,6 +153,8 @@ class _PlantDataState extends State<PlantData> {
                         initialValue: double.parse(temp),
                       ),
                       FlutterSwitch(
+                        activeIcon: Icon(Icons.ac_unit),
+                        inactiveIcon: Icon(Icons.wb_sunny),
                         width: 125.0,
                         height: 55.0,
                         valueFontSize: 25.0,
@@ -199,7 +202,7 @@ class _PlantDataState extends State<PlantData> {
                                     fontSize: 30.0,
                                     fontWeight: FontWeight.w600),
                                 modifier: (double value) {
-                                  return '${moisture} %';
+                                  return '${double.parse(moisture).toStringAsFixed(2)} %';
                                 }),
                             startAngle: 90,
                             angleRange: 360,
@@ -210,6 +213,8 @@ class _PlantDataState extends State<PlantData> {
                         initialValue: double.parse(moisture),
                       ),
                       FlutterSwitch(
+                        activeIcon: Icon(Icons.water),
+                        inactiveIcon: Icon(Icons.settings_power_rounded),
                         width: 125.0,
                         height: 55.0,
                         valueFontSize: 25.0,
@@ -252,7 +257,7 @@ class _PlantDataState extends State<PlantData> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600),
                             modifier: (double value) {
-                              return '${hum} %';
+                              return '${double.parse(hum).toStringAsFixed(2)} %';
                             }),
                         startAngle: 90,
                         angleRange: 360,
